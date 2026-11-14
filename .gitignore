@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Данные (крупные файлы не место в git)
+*.csv
+*.xlsx
+*.parquet
+
+# Окружения и секреты
+.env
+venv/
+
+# Jupyter
+*.ipynb_metadata/
