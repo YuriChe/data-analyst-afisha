@@ -13,8 +13,9 @@ temp*
 *.parquet
 
 # Окружения и секреты
-.env
+.venv/
 venv/
+env/
 *.log
 
 # Jupyter
