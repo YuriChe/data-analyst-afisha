@@ -3,6 +3,10 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 
+temp/
+temp*
+*.tmp
+
 # Данные (крупные файлы не место в git)
 *.csv
 *.xlsx
@@ -11,6 +15,7 @@ __pycache__/
 # Окружения и секреты
 .env
 venv/
+*.log
 
 # Jupyter
 *.ipynb_metadata/
