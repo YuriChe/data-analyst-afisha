@@ -25,4 +25,36 @@ def get_engine():
 
 engine = get_engine()
 
+query = '''
+        SELECT
+            user_id,
+        device_type_canonical,
+        order_id,
+        created_dt_msk AS order_dt,
+        created_ts_msk AS order_ts,
+        currency_code,
+        revenue,
+        tickets_count,
+        created_dt_msk::date - LAG(created_dt_msk::date) OVER (PARTITION BY user_id
+        ORDER BY
+            created_dt_msk) AS days_since_prev,
+        event_id,
+        event_name_code AS event_name,
+        event_type_main,
+        service_name,
+        region_name,
+        city_name
+        FROM afisha.purchases p
+        JOIN afisha.events e
+                USING (event_id)
+        JOIN afisha.city c
+                USING (city_id)
+        JOIN afisha.regions r
+                USING (region_id)
+        WHERE
+            p.device_type_canonical IN ('mobile', 'desktop') AND event_type_main != 'фильм'
+'''
+
+df = pd.read_sql_query(query, con=engine)
+
 
